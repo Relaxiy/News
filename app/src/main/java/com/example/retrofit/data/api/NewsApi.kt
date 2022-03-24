@@ -14,7 +14,7 @@ interface NewsApi {
         @Query("language") language: String?,
         @Query("sortBy") sortBy: String = "publishedAt",
         @Query("page") pageNumber: Int = 1,
-        @Query("sources") sources: String = "RBC",
+        @Query("sources") sources: String = "LENTA",
         @Query("apiKey") apiKey: String = Constants.API_KEY
     ): NewsResponse
 }
