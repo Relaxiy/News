@@ -10,19 +10,24 @@ import com.example.retrofit.R
 import com.example.retrofit.domain.models.BaseItem
 import com.example.retrofit.domain.models.News
 import com.example.retrofit.presentation.recycler.BaseViewHolder
+import com.example.retrofit.presentation.recycler.ShareClickListener
 
-class NewsViewHolder(itemView: View) : BaseViewHolder(itemView) {
+class NewsViewHolder(
+    itemView: View,
+    private val shareClickListener: ShareClickListener
+) : BaseViewHolder(itemView) {
 
     companion object {
         const val VIEW_TYPE = 2
-        fun newInstance(parent: ViewGroup) = NewsViewHolder(
+        fun newInstance(parent: ViewGroup, shareClickListener: ShareClickListener) = NewsViewHolder(
             LayoutInflater.from(
                 parent.context
             ).inflate(
                 R.layout.news_item,
                 parent,
                 false
-            )
+            ),
+            shareClickListener
         )
     }
 
@@ -52,9 +57,10 @@ class NewsViewHolder(itemView: View) : BaseViewHolder(itemView) {
             newsDescription.text = description
             newsAuthor.text = author
             Glide.with(itemView.context).load(urlToImage).into(newsImage)
-        }
-        share.setOnClickListener {
 
+            share.setOnClickListener {
+                shareClickListener.sendNews(url)
+            }
         }
     }
 }

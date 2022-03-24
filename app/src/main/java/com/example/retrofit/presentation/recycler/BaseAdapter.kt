@@ -8,14 +8,16 @@ import com.example.retrofit.domain.models.News
 import com.example.retrofit.presentation.recycler.viewHolders.DateViewHolder
 import com.example.retrofit.presentation.recycler.viewHolders.NewsViewHolder
 
-class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>() {
+class BaseAdapter(
+    private val shareClickListener: ShareClickListener
+) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private var items = listOf<BaseItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             DateViewHolder.VIEW_TYPE -> DateViewHolder.newInstance(parent)
-            NewsViewHolder.VIEW_TYPE -> NewsViewHolder.newInstance(parent)
+            NewsViewHolder.VIEW_TYPE -> NewsViewHolder.newInstance(parent, shareClickListener)
             else -> throw IllegalStateException("Wrong ViewHolder type")
         }
     }
