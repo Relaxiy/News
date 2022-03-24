@@ -1,5 +1,6 @@
 package com.example.retrofit.presentation.recycler.viewHolders
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,9 @@ class NewsViewHolder(
             newsTitle.text = title
             newsDescription.text = description
             newsAuthor.text = author
+            if (author != null) {
+                Log.e("author", author)
+            }
             Glide.with(itemView.context).load(urlToImage).into(newsImage)
 
             share.setOnClickListener {

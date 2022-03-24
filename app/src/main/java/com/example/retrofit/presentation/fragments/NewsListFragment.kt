@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit.R
@@ -52,12 +54,18 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     }
 
     private fun loadNews() {
-        newsListFragmentViewModel.loadNews("")
-        recycler?.adapter = adapter
-        newsListFragmentViewModel.items.observe(viewLifecycleOwner) { baseItems ->
-            totalResults.text = baseItems.keys.first()
-            adapter.setItems(baseItems.values.first())
-        }
+        search.setOnEditorActionListener(TextView.OnEditorActionListener{ _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                newsListFragmentViewModel.loadNews(search.text.toString())
+                recycler?.adapter = adapter
+                newsListFragmentViewModel.items.observe(viewLifecycleOwner) { baseItems ->
+                    totalResults.text = baseItems.keys.first()
+                    adapter.setItems(baseItems.values.first())
+                }
+                return@OnEditorActionListener true
+            }
+            false
+        })
     }
 
 }
