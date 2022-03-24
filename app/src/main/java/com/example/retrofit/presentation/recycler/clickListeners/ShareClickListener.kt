@@ -1,4 +1,4 @@
-package com.example.retrofit.presentation.recycler
+package com.example.retrofit.presentation.recycler.clickListeners
 
 interface ShareClickListener {
 

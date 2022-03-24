@@ -10,7 +10,7 @@ import com.example.retrofit.R
 import com.example.retrofit.domain.models.BaseItem
 import com.example.retrofit.domain.models.News
 import com.example.retrofit.presentation.recycler.BaseViewHolder
-import com.example.retrofit.presentation.recycler.ShareClickListener
+import com.example.retrofit.presentation.recycler.clickListeners.ShareClickListener
 
 class NewsViewHolder(
     itemView: View,

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit.R
 import com.example.retrofit.presentation.recycler.BaseAdapter
-import com.example.retrofit.presentation.recycler.ShareClickListener
+import com.example.retrofit.presentation.recycler.clickListeners.ShareClickListener
 import com.example.retrofit.presentation.viewModels.NewsListFragmentViewModel
 import com.example.retrofit.utils.ext.appComponent
 import kotlinx.android.synthetic.main.fragment_news_list.*
@@ -38,7 +38,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     }
 
     private val shareNews by lazy {
-        object : ShareClickListener{
+        object : ShareClickListener {
             override fun sendNews(newsLink: String) {
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     data = Uri.parse("mailto:")
