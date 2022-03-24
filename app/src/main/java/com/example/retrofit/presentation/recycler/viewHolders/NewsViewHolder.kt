@@ -57,10 +57,10 @@ class NewsViewHolder(
             newsTitle.text = title
             newsDescription.text = description
             newsAuthor.text = author
-            if (author != null) {
-                Log.e("author", author)
-            }
-            Glide.with(itemView.context).load(urlToImage).into(newsImage)
+
+            Glide.with(itemView.context)
+                .load(urlToImage)
+                .into(newsImage)
 
             share.setOnClickListener {
                 shareClickListener.sendNews(url)
