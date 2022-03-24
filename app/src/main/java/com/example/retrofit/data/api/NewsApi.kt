@@ -11,13 +11,11 @@ interface NewsApi {
     @Headers("Content-Type: application/json")
     suspend fun getNews(
         @Query("q") query: String?,
-        @Query("from") fromDate: String?,
-        @Query("to") toDate: String?,
         @Query("language") language: String?,
-        @Query("sortBy") sortBy: String = "relevancy",
+        @Query("sortBy") sortBy: String = "publishedAt",
         @Query("page") pageNumber: Int = 1,
         @Query("sources") sources: String = "RBC",
-        @Query("pageSize") pageSize: Int = 20,
+        @Query("pageSize") pageSize: Int = 100,
         @Query("apiKey") apiKey: String = Constants.API_KEY
     ): NewsResponse
 }

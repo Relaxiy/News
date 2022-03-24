@@ -12,8 +12,6 @@ class NewsRepositoryImpl @Inject constructor(private val newsApi: NewsApi): News
         return withContext(Dispatchers.IO) {
             return@withContext newsApi.getNews(
                 query = search,
-                fromDate = null,
-                toDate = null,
                 language = "ru"
             )
         }
